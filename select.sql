@@ -1,7 +1,7 @@
 -- 2 задание 
 SELECT song_name, song_length
 FROM song
-WHERE song_length = (SELECT MAX(song_length) from song)
+WHERE song_length = (SELECT MAX(song_length) FROM song)
 
 SELECT song_name, song_length
 FROM song
