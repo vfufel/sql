@@ -41,9 +41,12 @@ GROUP BY album.album_name;
 
 SELECT singer.singer_name
 FROM singer
-LEFT JOIN singer_album ON singer.singer_id = singer_album.singer_id
-LEFT JOIN album ON singer_album.album_id = album.album_id
-WHERE (album.album_year IS NULL) OR (album.album_year != 2020);
+WHERE singer.singer_id NOT IN (
+    SELECT singer_album.singer_id
+    FROM singer_album
+    JOIN album ON singer_album.album_id = album.album_id
+    WHERE album.album_year = 2020
+);
 
 SELECT collection.collection_name
 FROM collection
